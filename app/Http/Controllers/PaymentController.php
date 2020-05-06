@@ -53,7 +53,7 @@ class PaymentController extends Controller
         $currency = "NGN";
         $txref = "rave-rccg" . time(); // ensure you generate unique references per transaction.
         $PBFPubKey = "FLWPUBK-896d352443ef166c7d6af8233840685e-X"; // get your public key from the dashboard.
-        $redirect_url = "https://dev.rccglp33juniorchurch.com/validate/childrenspayment";
+        $redirect_url = "/teenspayment/successful";
 
         curl_setopt_array($curl, array(
             CURLOPT_URL => "https://api.ravepay.co/flwv3-pug/getpaidx/api/v2/hosted/pay",

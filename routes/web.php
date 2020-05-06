@@ -22,16 +22,17 @@ Route::resource('products', 'ProductsController');
 Route::resource('customers', 'CustomersController');
 Route::resource('userproducts', 'UserproductsController');
 Route::resource('contact', 'ContactController');
-Route::get('/home', function () {
-    return redirect('/products');
-});
-Route::post('/children/payment', 'PaymentController@childrenPayment');
-Route::get('/payment/successful', 'PaymentController@validateChildrenPayment');
-Route::get('/validate/childrenpayment', 'PaymentController@validateChildrenPayment');
 
+// route for initializing payment
 Route::post('/teachers/pay', 'PaymentController@teachersPayment')->name('teachers.pay');
+Route::post('/children/payment', 'PaymentController@childrenPayment');
+
+// route for validating payment
+
+Route::get('/teenspayment/successful', 'PaymentController@validateChildrenPayment');
+Route::get('/teacherspayment/successful', 'PaymentController@validateTeachersPayment');
+
 Route::get('/childrens', 'PaymentController@children');
-Route::get('/teenagers', 'PaymentController@teenagers');
 Route::get('/teachers', 'PaymentController@teachers');
 Route::get('/payment/successful', function () {
     return view('payment');
