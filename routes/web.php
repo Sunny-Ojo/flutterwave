@@ -13,21 +13,29 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', 'ProductsController@index');
-Route::get('/categories/{name}', 'CategoryController@index');
+Route::get('/', function () {
+    return view('products.index');
+});
 
 Auth::routes();
 Route::resource('products', 'ProductsController');
-Route::resource('wishlists', 'WishlistController');
+Route::resource('customers', 'CustomersController');
 Route::resource('userproducts', 'UserproductsController');
 Route::resource('contact', 'ContactController');
-Route::resource('carts', 'CartController');
 Route::get('/home', function () {
     return redirect('/products');
 });
-Route::get('/about', 'ShopController@about')->name('about');
-Route::get('/viewcart', 'CartController@index')->name('viewcart');
-Route::get('/items/{product}', 'CartController@store')->name('buyproduct')->middleware('auth');
-Route::get('/wishlist', 'WishlistController@index')->name('viewwishlist');
-Route::get('/addtowishlist/{product}', 'WishlistController@store')->name('addtowishlist');
-Route::get('/myproducts', 'ShopController@viewUserProducts')->name('viewmyproducts');
+Route::post('/children/payment', 'PaymentController@childrenPayment');
+Route::get('/payment/successful', 'PaymentController@validateChildrenPayment');
+Route::get('/validate/childrenpayment', 'PaymentController@validateChildrenPayment');
+
+Route::post('/teachers/pay', 'PaymentController@teachersPayment')->name('teachers.pay');
+Route::get('/childrens', 'PaymentController@children');
+Route::get('/teenagers', 'PaymentController@teenagers');
+Route::get('/teachers', 'PaymentController@teachers');
+Route::get('/payment/successful', function () {
+    return view('payment');
+});
+Route::get('/payment/failed', function () {
+    return view('failed');
+});

@@ -7,7 +7,7 @@
             <div class="lead text-center bg-dark text-white-50 mb-3">
                 Update Product
             </div>
-  {{-- @include('layouts.msg') --}}
+           {{-- @include('layouts.msg') --}}
             {!! Form::open(['action'=>['ProductsController@update',  $product->id], 'method'=> 'PUT', 'files'=>'true']) !!}
             <div class="form-group">
                 {{ Form::label('name' , 'Enter name of product') }}

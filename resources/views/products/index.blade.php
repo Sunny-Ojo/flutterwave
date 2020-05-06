@@ -1,61 +1,47 @@
 @extends('layouts.products')
-@section('title', 'Products listing |  Welcome')
+@section('title', 'DTCE Event Registration |  Welcome')
 
 @section('content')
-@if (count($products)> 0 )
-@foreach ($products as $product)
 
+<div class="col-md-6 col-xs-12 mb-5">
+    <div class=" card text-center">
+    <div class="card-header ">
+        <h3 class=" text-bold"><b>Childrens/Teenagers</b></h3>
+    </div>
+ <div class="card-body">
+     <p style="font-size: 50px" class="text-info"><b>&#8358; <sup>200</sup></b></p>
+   <p><b>For  Childrens and Teenagers</b></p>
+  <p> <b> Program Pamphlet</b></p>
+   <p> <b>Hand Band</b></p>
+  <p> <b> Free Accommodation</b></p>
+   <p style="font-size: 24px" class=" "> <b>And Lots more</b></p>
 
-<div class="col-lg-4 col-md-6 mb-4">
-    <div class="card h-100">
-    <a href="/products/{{$product->id}}"
-            ><img
-                class="card-img-top"
-    src="/storage/images/{{ $product->image}}"
-                alt="product image"
-         style=""/></a>
-        <hr>
-        {{-- <div class="card-body"> --}}
-            <h4 class="card-title ml-2">
-            <a href="/products/{{ $product->id}}"> {{ $product->name   }}</a>
-            </h4>
-            <small class="ml-2"><b>{{ $product->prize }}</b></small>
-            {{-- <p class="card-text">
-            {{ substr(  $product->about,0, 40 ), }} <a href="/products/{{$product->id}}">....more</a>
-            </p> --}}
-        {{-- </div> --}}
-        {{-- <div class="card-footer"> --}}
-            <small class="ml-2 mb-1 text-dark">
-              @if ($product->rating == 4)
-              &#9733; &#9733; &#9733; &#9733;
-              &#9734;
-              @elseif ($product->rating == 3)
-              &#9733; &#9733; &#9733; &#9734;
-              &#9734;
-              @elseif ($product->rating == 2)
-              &#9733; &#9733; &#9734; &#9734;
-              &#9734;
-              @elseif ($product->rating == 1)
-              &#9733; &#9734; &#9734; &#9734;
-              &#9734;
-              @else
-              &#9733; &#9733; &#9733; &#9733;
-              &#9733;
-              @endif
-            </small
-            >
+ </div>
+ <div class="card-footer text-center">
+    <a href="/childrens/" class="btn btn-success btn-lg">PAY NOW</a>
+
+ </div>
+    </div>
+    </div>
+        <div class="col-md-6 col-xs-12 mb-5">
+            <div class=" card text-center">
+                <div class="card-header ">
+                    <h3 class=" text-bold"><b>  Teachers</b></h3>
+                </div>
+             <div class="card-body">
+                <p style="font-size: 50px" class="text-info"><b>&#8358; <sup>500</sup></b></p>
+
+               <p><b>For  Teachers Only</b></p>
+              <p> <b> Program Pamphlet</b></p>
+               <p> <b>Hand Band</b></p>
+              <p> <b> Free Accommodation</b></p>
+               <p style="font-size: 24px" class=" "> <b>And Lots more</b></p>
+
+             </div>
+             <div class="card-footer text-center">
+                <a href="/teachers" class="btn btn-danger btn-lg">PAY NOW</a>
+
+             </div>
+                </div>
         </div>
-    </div>
-{{-- </div> --}}
-
-@endforeach
-{{ $products->links() }}
-@else
-<div class="container">
-    <h4 class="text-danger">There are no products at the moment!!!  <a href="/products/create" class="btn btn-warning">Add products?</a></h4>
-
-    </div>
-
-@endif
-
 @endsection

@@ -47,6 +47,10 @@
     </div>
 {{-- </div> --}}
 @endforeach
+</div>
+<button disabled="disabled" class="btn-primary btn mb-3">Total ={{ 'NGN ' .$total}}</button>
+<a href="/checkout/{{$total}}" class="btn btn-warning mb-3 text-center">Checkout Now</a>
+
 {{-- {{ $cart->links() }} --}}
 {{-- <button disabled="disabled" class="btn warning">{{$prize}}</button> --}}
 @else

@@ -28,8 +28,15 @@ class CartController extends Controller
         $wishlist = Wishlist::where('user_id', auth()->user()->id)->get();
         $cart = Cart::where('user_id', auth()->user()->id)->get();
         $cat = Category::all();
+        $qty = Cart::where('user_id', auth()->user()->id)->get();
+        $total = 0;
+        foreach ($qty as $product) {
+            $subtotal = $product->prize * 1;
+            $total += $subtotal;
+        }
+
         $products = Shop::orderBy('created_at', 'desc')->paginate(9);
-        return view('user.cart')->with(['userproducts' => $userproducts, 'wishlist' => $wishlist, 'cart' => $cart, 'cat' => $cat, 'products' => $products]);
+        return view('user.cart')->with(['total' => $total, 'userproducts' => $userproducts, 'wishlist' => $wishlist, 'cart' => $cart, 'cat' => $cat, 'products' => $products]);
 
     }
 
@@ -53,7 +60,6 @@ class CartController extends Controller
     {
         //
         $item = Shop::find($product);
-
         $newCart = new Cart();
         $newCart->name = $item->name;
         $newCart->prize = $item->prize;
@@ -74,7 +80,7 @@ class CartController extends Controller
      */
     public function show($id)
     {
-        //
+
         $userproducts = Shop::where('user_id', auth()->user()->id)->get();
 
         $product = Cart::find($id);
@@ -94,7 +100,7 @@ class CartController extends Controller
      */
     public function edit($id)
     {
-        //
+
         $userproducts = Shop::where('user_id', auth()->user()->id)->get();
 
         $product = Cart::find($id);
@@ -102,6 +108,7 @@ class CartController extends Controller
         $cart = Cart::where('user_id', auth()->user()->id)->get();
         $cat = Category::all();
         $products = Shop::orderBy('created_at', 'desc')->paginate(9);
+
         return view('products.edit')->with(['userproducts' => $userproducts, 'wishlist' => $wishlist, 'product' => $product, 'cart' => $cart, 'cat' => $cat, 'products' => $products]);
 
     }
@@ -115,7 +122,7 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**
