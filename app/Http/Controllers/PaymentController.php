@@ -155,6 +155,7 @@ class PaymentController extends Controller
                 $teen->total_paid_for = $user->number_of_children_or_teens;
                 $teen->ref_id = $ref;
                 $teen->amount_paid = $getAmount;
+                $teen->save();
                 return view('payment')->with(['txref' => $ref, 'amount' => $getAmount]);
 
             } else {
@@ -291,7 +292,9 @@ class PaymentController extends Controller
                 $teacher->forms = $user->number_of_forms;
                 $teacher->total_paid_for = $user->number_of_teachers;
                 $teacher->ref_id = $ref;
-                $teacher->amount_paid = $getAmount;return view('payment');
+                $teacher->amount_paid = $getAmount;
+                $teacher->save();
+                return view('payment');
             } else {
 
                 //Dont Give Value and return to Failure page
