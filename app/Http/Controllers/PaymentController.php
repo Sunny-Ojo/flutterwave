@@ -143,7 +143,6 @@ class PaymentController extends Controller
                 $getData = $request->session()->pull('userdetails');
                 $user = (object)$getData;
 
-                echo $user->email;
                 $teen = new Children();
                 $teen->firstName = $user->firstName;
                 $teen->lastName = $user->lastName;
